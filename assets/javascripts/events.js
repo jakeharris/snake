@@ -6,6 +6,7 @@
 
 function atWorldsEnd() {
   if(!entities) return false;
+  var ret = false;
   entities.forEach(function (e, i, a) {
     if(e.x < 0
        ||
@@ -14,9 +15,9 @@ function atWorldsEnd() {
        e.x > document.width - e.width
        ||
        e.y > document.height - e.height)
-        return true;
+        return (ret = true);
   });
-  return false;
+  return ret;
 }
 
 function bitSelf() {
