@@ -1,4 +1,8 @@
-/* Common game events. */
+/* 
+    Common game events. 
+    These events can happen to nearly any object. 
+    If I define a base object type for games, these will go there. 
+*/
 
 function atWorldsEnd() {
   if(!entities) return false;
