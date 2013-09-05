@@ -39,7 +39,9 @@ var logic = function () {
           entities = [ new Block({x: width/2, y: height/2}) ]; 
           return;
         }
-        
+        if(atWorldsEnd()) return respawn();
+        if(bitSelf()) return respawn();
+        return move();
     };
 
 var loop = function () {
