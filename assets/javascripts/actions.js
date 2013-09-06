@@ -14,5 +14,5 @@ function move () {
 
 function respawn () {
   if(!entities) return false;
-  entities = [ new Block({x: width/2, y: height/2}) ];
+  entities = [ new Snake({ }, { }) ];
 }

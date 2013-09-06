@@ -23,20 +23,13 @@ var clear = function () {
 var render = function () { 
         if(!entities) return;
         entities.forEach(function (e, i, a) {  
-          ctx.fillStyle = (e.fillStyle)? e.fillStyle : '#282828';
-          ctx.beginPath();
-          ctx.rect((e.x)? e.x : 0,
-                   (e.y)? e.y : 0,
-                   (e.width)? e.width : 0,
-                   (e.height)? e.height : 0); /* make this handle different shapes, images, etc. */
-          ctx.closePath();
-          ctx.fill();
+          e.render();
         });
     };
 
 var logic = function () {
         if(!entities) {
-          entities = [ new Block({x: width/2, y: height/2}) ]; 
+          entities = [ new Snake({ }, { }) ]; 
           return;
         }
         if(atWorldsEnd()) return respawn();
@@ -50,5 +43,17 @@ var loop = function () {
         logic();
         game = setTimeout(loop, 1000 / 50);
     };
+
+document.addEventListener('keydown', function (e) {
+  var d = entities[0].direction,
+      key = e.which;
+  
+  if      (key == '37' && d != Direction.RIGHT) d = Direction.LEFT;
+  else if (key == '38' && d != Direction.DOWN)  d = Direction.UP;
+  else if (key == '39' && d != Direction.LEFT)  d = Direction.RIGHT;
+  else if (key == '40' && d != Direction.UP)    d = Direction.DOWN;
+  
+  entities[0].direction = d;
+})
 
 loop();

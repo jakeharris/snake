@@ -8,18 +8,22 @@ function atWorldsEnd() {
   if(!entities) return false;
   var ret = false;
   entities.forEach(function (e, i, a) {
-    if(e.x < 0
+    
+  });
+  return ret;
+}
+
+function outsideMapBounds() {
+      if(e.x < 0
        ||
        e.y < 0
        ||
        e.x > document.width - e.width
        ||
        e.y > document.height - e.height)
-        return (ret = true);
-  });
-  return ret;
+        return true;
 }
-
+                   
 function bitSelf() {
   if(!entities) return false;
   entities.forEach(function (e, i, a) {
