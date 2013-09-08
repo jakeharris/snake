@@ -16,3 +16,9 @@ function respawn () {
   if(!entities) return false;
   entities = [ new Snake({ }, { }) ];
 }
+
+function eggSpawn () {
+  if(!entities) return false;
+  if(!entities[0]) return respawn();
+  entities.push( new Block { } );
+}
