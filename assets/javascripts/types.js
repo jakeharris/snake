@@ -4,7 +4,7 @@ var BLOCK_WIDTH = 32,
     BLOCK_HEIGHT = 32,
     BLOCK_BASE_SPEED = 4,
     SNAKE_BASE_SPEED = 1,
-    SNAKE_BASE_LOOPS_TO_MOVE = 60;
+    SNAKE_BASE_LOOPS_TO_MOVE = 20;
     SNAKE_BASE_LENGTH = 4;
 
 Direction = {
@@ -64,12 +64,17 @@ function Snake (opts, blockopts) {
     if(++this.loops >= this.loops_to_move) {
         for(var x = 0; x < this.speed; x++) {
           var tail = this.blocks.pop();
-          tail.direction = this.direction;
+          tail.x = this.blocks[0].x; tail.y = this.blocks[0].y;
+          //tail.direction = preventOuroboros(tail.direction, this.direction);
           tail.move();
           this.blocks.unshift(tail)
         }
         this.loops = 0;
     }
+  };
+  
+  this.preventOuroboros = function (oldd, newd) {
+    //if(oldd == Direction.LEFT && newd == 
   };
   
   this.render = function () {

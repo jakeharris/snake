@@ -5,25 +5,23 @@
 */
 
 function atWorldsEnd() {
+  var snakeHead;
+  
   if(!entities) return false;
-  var ret = false;
-  entities.forEach(function (e, i, a) {
-    
-  });
-  return ret;
-}
-
-function outsideMapBounds() {
-      if(e.x < 0
-       ||
-       e.y < 0
-       ||
-       e.x > document.width - e.width
-       ||
-       e.y > document.height - e.height)
+  if(!(snakeHead = entities[0].blocks[0]))return false;
+  
+  if(snakeHead.x < 0
+     ||
+     snakeHead.y < 0
+     ||
+     snakeHead.x > document.width - snakeHead.width
+     ||
+     snakeHead.y > document.height - snakeHead.height)
         return true;
+  
+  return false;
 }
-                   
+                 
 function bitSelf() {
   if(!entities) return false;
   entities.forEach(function (e, i, a) {
