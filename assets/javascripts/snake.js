@@ -33,7 +33,8 @@ var logic = function () {
           return;
         }
         if(atWorldsEnd()) return respawn();
-        if(bitSelf()) return respawn();
+        if(bitingSelf()) return respawn();
+        //if(eatingEgg()) return eggSpawn();;
         return move();
     };
 

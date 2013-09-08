@@ -22,10 +22,17 @@ function atWorldsEnd() {
   return false;
 }
                  
-function bitSelf() {
+function bitingSelf() {
   if(!entities) return false;
-  entities.forEach(function (e, i, a) {
+  if(!entities[0].blocks[0]) return false;
+
+  var head,
+      ret = false;
+  entities[0].blocks.some(function (e, i, a) {
     /* TODO: Fill this in. */
+    // assuming the topleft is (0, 0)
+    if(!head) { head = e; }
+    else if(Math.sqrt(Math.pow(head.x - e.x, 2) + Math.pow(head.y - e.y, 2)) < BLOCK_WIDTH) return (ret = true);
   });
-  return false;
+  return ret;
 }
