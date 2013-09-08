@@ -55,6 +55,7 @@ document.addEventListener('keydown', function (e) {
   else if (key == '40' && d != Direction.UP)    d = Direction.DOWN;
   
   entities[0].direction = d;
+  console.log(entities[0].direction);
 })
 
 loop();

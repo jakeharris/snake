@@ -59,22 +59,28 @@ function Snake (opts, blockopts) {
   this.speed = (opts.speed) ? opts.speed : SNAKE_BASE_SPEED,
   this.loops_to_move = (opts.loops) ? opts.loops : SNAKE_BASE_LOOPS_TO_MOVE,
   this.loops = 0;
+  this.tail;
   this.direction = (opts.direction) ? opts.direction : Direction.UP;
   this.move = function () {
     if(++this.loops >= this.loops_to_move) {
         for(var x = 0; x < this.speed; x++) {
-          var tail = this.blocks.pop();
-          tail.x = this.blocks[0].x; tail.y = this.blocks[0].y;
-          //tail.direction = preventOuroboros(tail.direction, this.direction);
-          tail.move();
-          this.blocks.unshift(tail)
+          this.tail = this.blocks.pop();
+          this.tail.x = this.blocks[0].x; this.tail.y = this.blocks[0].y; this.tail.direction = this.blocks[0].direction;
+          this.preventOuroboros();
+          this.tail.move();
+          this.blocks.unshift(this.tail)
         }
         this.loops = 0;
     }
   };
   
-  this.preventOuroboros = function (oldd, newd) {
-    //if(oldd == Direction.LEFT && newd == 
+  this.preventOuroboros = function () {
+    if((this.tail.direction == Direction.LEFT && this.direction == Direction.RIGHT)
+    || (this.tail.direction == Direction.UP && this.direction == Direction.DOWN)
+    || (this.tail.direction == Direction.RIGHT && this.direction == Direction.LEFT)
+    || (this.tail.direction == Direction.DOWN && this.direction == Direction.UP))
+      return;
+    else this.tail.direction = this.direction;
   };
   
   this.render = function () {
