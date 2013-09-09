@@ -4,6 +4,7 @@ var width = document.width,
     ctx = c.getContext('2d'),
     entities,
     game,
+    paused = false,
     score = 0,
     highscore = 0;
 
@@ -58,6 +59,30 @@ var loop = function () {
         game = setTimeout(loop, 10);
     };
 
+var renderPause = function () {
+        ctx.fillStyle = "rgba(0, 0, 0, .5)";
+        ctx.beginPath();
+        ctx.rect(0, 0, width, height);
+        ctx.closePath();
+        ctx.fill();
+  
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.fillText('Press <P> or <ESC> to continue playing.', document.width*3/8, document.height/2); //FIXME
+        ctx.closePath();
+}
+
+var pause = function () {
+        renderPause();
+        if(!paused) {
+          game = clearTimeout(game);
+          paused = true;
+        } else {
+          game = setTimeout(loop, 10);
+          paused = false;
+        }
+}
+
 document.addEventListener('keydown', function (e) {
   var d = entities[0].direction,
       key = e.which;
@@ -66,9 +91,9 @@ document.addEventListener('keydown', function (e) {
   else if (key == '38' && d != Direction.DOWN)  d = Direction.UP;
   else if (key == '39' && d != Direction.LEFT)  d = Direction.RIGHT;
   else if (key == '40' && d != Direction.UP)    d = Direction.DOWN;
+  else if (key == '27' || key == '80') pause();
   
   entities[0].direction = d;
-  console.log(entities[0].direction);
-})
+});
 
 loop();

@@ -33,8 +33,6 @@ function growSnake () {
   if(!entities) return false;
   if(!entities[0]) return false;
   
-  console.log("entered growSnake");
-  
   var block,
       i,
       snakeBlocks = entities[0].blocks;
