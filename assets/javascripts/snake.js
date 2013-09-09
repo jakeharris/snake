@@ -10,6 +10,8 @@ var width = document.width,
 c.width = width;
 c.height = height;
 
+ctx.font = "22pt Arial";
+
 var clear = function () {
         if(width != document.width || height != document.height) {
           c.width = (width = document.width);
