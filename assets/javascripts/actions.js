@@ -17,6 +17,7 @@ function respawn () {
   entities = [ new Snake({ }, { }) ];
   if(highscore < score) highscore = score;
   score = 0;
+  return eggSpawn();
 }
 
 function eggSpawn () {
