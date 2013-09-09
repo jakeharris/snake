@@ -26,7 +26,7 @@ function eggSpawn () {
   entities[1] =  new Block ({ }) ;
   growSnake();
   score++;
-  entities[0].loops_to_move--;
+  entities[0].loops_to_move = (entities[0].loops_to_move)*0.95 //used to be //entities[0].loops_to_move--;
 }
 
 function growSnake () {

@@ -34,6 +34,7 @@ var render = function () {
         ctx.beginPath();
         ctx.fillText('Score: ' + score, document.width/20, document.height/20);
         ctx.fillText('High score: ' + highscore, document.width/20, document.height/10);
+		ctx.fillText('Loops to move: ' + entities[0].loops_to_move, document.width/20, document.height/ (20/3) );
         ctx.closePath();
         ctx.fill();
     };
