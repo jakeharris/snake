@@ -3,7 +3,9 @@ var width = document.width,
     c = document.getElementById('c'),
     ctx = c.getContext('2d'),
     entities,
-    game;
+    game,
+    score = 0,
+    highscore = 0;
 
 c.width = width;
 c.height = height;
@@ -13,7 +15,7 @@ var clear = function () {
           c.width = (width = document.width);
           c.height = (height = document.height);
         }
-        ctx.fillStyle = '#d0e7f9';
+        ctx.fillStyle = '#fafafa';
         ctx.beginPath();
         ctx.rect(0, 0, width, height);
         ctx.closePath();
@@ -25,16 +27,24 @@ var render = function () {
         entities.forEach(function (e, i, a) {  
           e.render();
         });
+        
+        ctx.fillStyle = '#282828';
+        ctx.beginPath();
+        ctx.fillText('Score: ' + score, document.width/20, document.height/20);
+        ctx.fillText('High score: ' + highscore, document.width/20, document.height/10);
+        ctx.closePath();
+        ctx.fill();
     };
 
 var logic = function () {
         if(!entities) {
-          entities = [ new Snake({ }, { }) ]; 
+          entities = [ new Snake({ }, { }), new Block ({ moves: false }) ];
+          console.log(entities[1]);
           return;
         }
         if(atWorldsEnd()) return respawn();
         if(bitingSelf()) return respawn();
-        if(eatingEgg()) return eggSpawn();;
+        if(eatingEgg()) return eggSpawn();
         return move();
     };
 

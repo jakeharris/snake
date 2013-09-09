@@ -19,6 +19,7 @@ function Block (opts) {
   this.y = (opts.y) ? opts.y : (Math.random()*document.height),
   this.width = BLOCK_WIDTH,
   this.height = BLOCK_HEIGHT,
+  this.moves = (opts.moves) ? opts.moves : false,
   this.fillStyle = (opts.fillStyle) ? opts.fillStyle : '#282828'; /* must be a color or a gradient or a pattern */
   
   this.multiplier = 1;
@@ -55,12 +56,13 @@ function Block (opts) {
 }
 
 function Snake (opts, blockopts) {
-  this.blocks = (blockopts) ? [ new Block (blockopts) ] : [ new Block ({ }) ],
+  this.blocks = (blockopts) ? [ new Block (blockopts) ] : [ new Block ({ moves: true }) ],
   this.speed = (opts.speed) ? opts.speed : SNAKE_BASE_SPEED,
   this.loops_to_move = (opts.loops) ? opts.loops : SNAKE_BASE_LOOPS_TO_MOVE,
   this.loops = 0;
   this.tail;
   this.direction = (opts.direction) ? opts.direction : Direction.UP;
+  this.moves = true;
   this.move = function () {
     if(++this.loops >= this.loops_to_move) {
         for(var x = 0; x < this.speed; x++) {
@@ -91,6 +93,6 @@ function Snake (opts, blockopts) {
   
   var size = (opts.size) ? opts.size : SNAKE_BASE_LENGTH;
   
-  while(this.blocks.length < size) this.blocks.push( new Block ({ x: this.blocks[this.blocks.length - 1].x, y: this.blocks[this.blocks.length - 1].y + BLOCK_HEIGHT }) );
+  while(this.blocks.length < size) this.blocks.push (new Block( { x: this.blocks[this.blocks.length - 1].x, y: this.blocks[this.blocks.length - 1].y + BLOCK_HEIGHT, moves: true} ));
   
 }
