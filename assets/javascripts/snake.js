@@ -54,7 +54,7 @@ var loop = function () {
         clear();
         render();
         logic();
-        game = setTimeout(loop, 1000 / 50);
+        game = setTimeout(loop, 10);
     };
 
 document.addEventListener('keydown', function (e) {
