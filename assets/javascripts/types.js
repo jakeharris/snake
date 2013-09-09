@@ -15,8 +15,8 @@ Direction = {
 }
 
 function Block (opts) {
-  this.x = (opts.x) ? opts.x : (Math.random()*document.width), 
-  this.y = (opts.y) ? opts.y : (Math.random()*document.height),
+  this.x = (opts.x) ? opts.x : (Math.random() * ( document.width - BLOCK_WIDTH ) ), 
+  this.y = (opts.y) ? opts.y : (Math.random() * ( document.height - BLOCK_HEIGHT ) ),
   this.width = BLOCK_WIDTH,
   this.height = BLOCK_HEIGHT,
   this.moves = (opts.moves) ? opts.moves : false,
