@@ -41,16 +41,16 @@ function growSnake () {
   
   switch(snakeBlocks[i].direction) {
     case Direction.LEFT: //add it to the right of the last one
-      block = new Block( { x: snakeBlocks[i].x + BLOCK_WIDTH, y: snakeBlocks[i], moves: true } );
+      block = new Block( { x: snakeBlocks[i].x + 1, y: snakeBlocks[i], moves: true } );
       break;
     case Direction.UP: //add it to the bottom of the last one
-      block = new Block( { x: snakeBlocks[i].x, y: snakeBlocks[i].y + BLOCK_HEIGHT, moves: true} );
+      block = new Block( { x: snakeBlocks[i].x, y: snakeBlocks[i].y + 1, moves: true} );
       break;
     case Direction.RIGHT: //add it to the left of the last one
-      block = new Block( { x: snakeBlocks[i].x - BLOCK_WIDTH, y: snakeBlocks[i], moves: true} );
+      block = new Block( { x: snakeBlocks[i].x - 1, y: snakeBlocks[i], moves: true} );
       break;
     case Direction.DOWN: //add it to the top of the last one
-      block = new Block( { x: snakeBlocks[i].x, y: snakeBlocks[i].y - BLOCK_HEIGHT, moves: true} );
+      block = new Block( { x: snakeBlocks[i].x, y: snakeBlocks[i].y - 1, moves: true} );
       break;
     default:
       break;

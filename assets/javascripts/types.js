@@ -1,10 +1,10 @@
 /* Types common to the whole game. */
 /* CONSTANTS */
-var BLOCK_WIDTH = 32,
-    BLOCK_HEIGHT = 32,
+var BLOCK_WIDTH = Math.floor(document.width / 60),
+    BLOCK_HEIGHT = BLOCK_WIDTH,
     BLOCK_BASE_SPEED = 4,
     SNAKE_BASE_SPEED = 1,
-    SNAKE_BASE_LOOPS_TO_MOVE = 20;
+    SNAKE_BASE_LOOPS_TO_MOVE = 20,
     SNAKE_BASE_LENGTH = 4;
 
 Direction = {
@@ -15,8 +15,8 @@ Direction = {
 }
 
 function Block (opts) {
-  this.x = (opts.x) ? opts.x : (Math.random() * ( document.width - BLOCK_WIDTH ) ), 
-  this.y = (opts.y) ? opts.y : (Math.random() * ( document.height - BLOCK_HEIGHT ) ),
+  this.x = (opts.x) ? opts.x : Math.floor(Math.random() * Math.floor( document.width/BLOCK_WIDTH )), 
+  this.y = (opts.y) ? opts.y : Math.floor(Math.random() * Math.floor( document.height/BLOCK_HEIGHT )),
   this.width = BLOCK_WIDTH,
   this.height = BLOCK_HEIGHT,
   this.moves = (opts.moves) ? opts.moves : false,
@@ -27,16 +27,16 @@ function Block (opts) {
   this.move = function () {
     switch (this.direction) {
       case Direction.LEFT:
-        this.x = this.x - BLOCK_WIDTH;//BLOCK_BASE_SPEED*(this.multiplier);
+        this.x = this.x - 1;//BLOCK_BASE_SPEED*(this.multiplier);
         break;
       case Direction.UP:
-        this.y = this.y - BLOCK_HEIGHT;//BLOCK_BASE_SPEED*(this.multiplier);
+        this.y = this.y - 1;//BLOCK_BASE_SPEED*(this.multiplier);
         break;
       case Direction.RIGHT:
-        this.x = this.x + BLOCK_WIDTH;//BLOCK_BASE_SPEED*(this.multiplier);
+        this.x = this.x + 1;//BLOCK_BASE_SPEED*(this.multiplier);
         break;
       case Direction.DOWN:
-        this.y = this.y + BLOCK_HEIGHT;//BLOCK_BASE_SPEED*(this.multiplier);
+        this.y = this.y + 1;//BLOCK_BASE_SPEED*(this.multiplier);
         break;
       default:
         return false;
@@ -46,8 +46,8 @@ function Block (opts) {
   this.render = function () {
           ctx.fillStyle = (this.fillStyle)? this.fillStyle : '#282828';
           ctx.beginPath();
-          ctx.rect((this.x)? this.x : 0,
-                   (this.y)? this.y : 0,
+          ctx.rect((this.x)? this.x*BLOCK_WIDTH : 0,
+                   (this.y)? this.y*BLOCK_HEIGHT : 0,
                    (this.width)? this.width : 0,
                    (this.height)? this.height : 0); /* make this handle different shapes, images, etc. */
           ctx.closePath();
@@ -93,6 +93,6 @@ function Snake (opts, blockopts) {
   
   var size = (opts.size) ? opts.size : SNAKE_BASE_LENGTH;
   
-  while(this.blocks.length < size) this.blocks.push (new Block( { x: this.blocks[this.blocks.length - 1].x, y: this.blocks[this.blocks.length - 1].y + BLOCK_HEIGHT, moves: true} ));
+  while(this.blocks.length < size) this.blocks.push (new Block( { x: this.blocks[this.blocks.length - 1].x, y: this.blocks[this.blocks.length - 1].y + 1, moves: true} ));
   
 }

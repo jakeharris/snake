@@ -43,7 +43,6 @@ var render = function () {
 var logic = function () {
         if(!entities) {
           entities = [ new Snake({ }, { }), new Block ({ moves: false }) ];
-          console.log(entities[1]);
           return;
         }
         if(atWorldsEnd()) return respawn();
