@@ -17,13 +17,13 @@ function respawn () {
   entities = [ new Snake({ }, { }) ];
   if(highscore < score) highscore = score;
   score = 0;
-  entities[1] =  new Block ({ }) ;
+  entities[1] =  new Block ({ fillStyle: '#CC3A09' }) ;
 }
 
 function eggSpawn () {
   if(!entities) return false;
   if(!entities[0]) return respawn();
-  entities[1] =  new Block ({ }) ;
+  entities[1] =  new Block ({ fillStyle: '#CC3A09' }) ;
   growSnake();
   score++;
   entities[0].loops_to_move = (entities[0].loops_to_move)*0.95 //used to be //entities[0].loops_to_move--;

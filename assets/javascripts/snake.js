@@ -35,14 +35,13 @@ var render = function () {
         ctx.beginPath();
         ctx.fillText('Score: ' + score, document.width/20, document.height/20);
         ctx.fillText('High score: ' + highscore, document.width/20, document.height/10);
-		ctx.fillText('Loops to move: ' + entities[0].loops_to_move, document.width/20, document.height/ (20/3) ); //lol wat
         ctx.closePath();
         ctx.fill();
     };
 
 var logic = function () {
         if(!entities) {
-          entities = [ new Snake({ }, { }), new Block ({ moves: false }) ];
+          entities = [ new Snake({ }, { }), new Block ({ moves: false, fillStyle: '#CC3A09' }) ];
           return;
         }
         if(atWorldsEnd()) return respawn();
