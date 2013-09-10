@@ -14,10 +14,10 @@ function atWorldsEnd() {
      ||
      snakeHead.y < 0
      ||
-     snakeHead.x > document.width/60 - snakeHead.width
+     snakeHead.x > document.width/BLOCK_WIDTH - 1
      ||
-     snakeHead.y > document.height/60 - snakeHead.height)
-        return false;
+     snakeHead.y > document.height/BLOCK_WIDTH - 1)
+        return true;
   
   return false;
 }
@@ -26,14 +26,13 @@ function bitingSelf() {
   if(!entities) return false;
   if(!entities[0].blocks[0]) return false;
 
-  return false;
-  /*var head,
+  var head,
       ret = false;
   entities[0].blocks.some(function (e, i, a) {
     if(!head) { head = e; }
     else if(Math.sqrt(Math.pow(head.x - e.x, 2) + Math.pow(head.y - e.y, 2)) < 1) return (ret = true);
   });
-  return ret;*/
+  return ret;
 }
 
 function eatingEgg() {
@@ -42,10 +41,8 @@ function eatingEgg() {
   if(!(head = entities[0].blocks[0])) return false;
   if(!entities[1]) return false;
   
-  return false;
-  
-  /*if(!head) { head = entities[0].blocks[0]; }
+  if(!head) { head = entities[0].blocks[0]; }
   else if(Math.sqrt(Math.pow(head.x - entities[1].x, 2) + Math.pow(head.y - entities[1].y, 2)) < 1) return true;
 
-  return false;*/
+  return false;
 }
