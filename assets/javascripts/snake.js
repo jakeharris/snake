@@ -277,6 +277,7 @@ var clear = function () {
           ctx.rect(0, 0, width, height);
           ctx.closePath();
           ctx.fill();
+        }
     };
 
 var render = function () { 
