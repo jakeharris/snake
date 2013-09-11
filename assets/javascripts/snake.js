@@ -272,12 +272,12 @@ var clear = function () {
           c.height = vpheight();
           BLOCK_WIDTH = Math.floor(vpwidth() / 60);
           BLOCK_HEIGHT = BLOCK_WIDTH;
-          ctx.fillStyle = '#fafafa';
-          ctx.beginPath();
-          ctx.rect(0, 0, width, height);
-          ctx.closePath();
-          ctx.fill();
         }
+        ctx.fillStyle = '#fafafa';
+        ctx.beginPath();
+        ctx.rect(0, 0, width, height);
+        ctx.closePath();
+        ctx.fill();
     };
 
 var render = function () { 
