@@ -258,6 +258,7 @@ var width = vpwidth(),
     ctx = c.getContext('2d'),
     entities,
     game,
+    inputs = [],
     paused = false,
     score = 0,
     highscore = 0;
@@ -299,6 +300,8 @@ var logic = function () {
           entities = [ new Snake({ }, { }), new Block ({ moves: false, fillStyle: '#CC3A09' }) ];
           return;
         }
+        if(inputs.length != 0)
+            entities[0].direction = inputs.pop();
         if(atWorldsEnd()) return respawn();
         if(bitingSelf()) return respawn();
         if(eatingEgg()) return eggSpawn();
@@ -346,7 +349,7 @@ document.addEventListener('keydown', function (e) {
   else if (key == '40' && d != Direction.UP)    d = Direction.DOWN;
   else if (key == '27' || key == '80') pause();
   
-  entities[0].direction = d;
+  inputs.push(d);
 });
 
 loop();
